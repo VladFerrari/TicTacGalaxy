@@ -2,13 +2,13 @@ import os
 from flask import Flask, request
 import telebot
 
-TOKEN = os.environ.get("BOTTOKEN")
+TOKEN = "8366422629:AAH5XkN5i-p6HVXBo3w6-X9qzQmbBu9TyaY"
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, "Привет! Я бот TicTac Galaxy 🚀")
+    bot.reply_to(message, "Привет! Я бот TicTac Galaxy! 🚀")
 
 @app.route(f"/{TOKEN}", methods=['POST'])
 def receive_update():
@@ -24,4 +24,4 @@ def hello():
 if __name__ == '__main__':
     bot.remove_webhook()
     bot.set_webhook(url=f"https://tacgalaxy.onrender.com/{TOKEN}")
-    app.run(host="0.0.0.0", port=int(os.environ["PORT"]))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
